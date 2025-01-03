@@ -1,5 +1,5 @@
 resource "azurerm_lb" "main" {
-  name                = "AzureFuzionLB" 
+  name                = "AzureFuzionLB"
   location            = azurerm_resource_group.main.location
   resource_group_name = azurerm_resource_group.main.name
 
@@ -32,7 +32,7 @@ resource "azurerm_lb_rule" "http_rule" {
 }
 
 resource "azurerm_network_interface_backend_address_pool_association" "webapp_vm_nic_association" {
-  network_interface_id   = azurerm_network_interface.webapp_nic.id
-  ip_configuration_name  = "internal" 
+  network_interface_id    = azurerm_network_interface.webapp_nic.id
+  ip_configuration_name   = "internal"
   backend_address_pool_id = azurerm_lb_backend_address_pool.main.id
 }

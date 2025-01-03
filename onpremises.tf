@@ -66,5 +66,5 @@ resource "azurerm_virtual_network_gateway_connection" "onprem_to_main" {
   virtual_network_gateway_id = azurerm_virtual_network_gateway.onprem_vpn_gateway.id
   local_network_gateway_id   = azurerm_local_network_gateway.onprem.id
 
-  shared_key = "YourSharedKeyHere"
+  shared_key = var.vpn_shared_key
 }

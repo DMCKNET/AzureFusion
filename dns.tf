@@ -15,5 +15,5 @@ resource "azurerm_private_dns_a_record" "example_record" {
   zone_name           = azurerm_private_dns_zone.example.name
   resource_group_name = azurerm_resource_group.main.name
   ttl                 = 300
-  records             = ["10.0.1.10"] 
+  records             = ["10.0.1.10"]
 }
