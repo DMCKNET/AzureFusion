@@ -41,18 +41,3 @@ resource "azurerm_virtual_machine" "afz_webapp_vm" {
     disable_password_authentication = false
   }
 }
-
-resource "azurerm_virtual_machine_extension" "afz_custom_script_extension" {
-  name                 = "afzCustomScript"
-  virtual_machine_id   = azurerm_virtual_machine.afz_webapp_vm.id
-  publisher            = "Microsoft.Azure.Extensions"
-  type                 = "CustomScript"
-  type_handler_version = "2.0"
-
-  settings = <<SETTINGS
-    {
-        "fileUris": ["https://example.com/script.sh"],
-        "commandToExecute": "sh script.sh"
-    }
-  SETTINGS
-}

@@ -33,8 +33,8 @@ resource "azurerm_virtual_machine" "webapp_vm" {
 
   os_profile {
     computer_name  = "webappvm"
-    admin_username = var.admin_username
-    admin_password = var.admin_password
+    admin_username = data.azurerm_key_vault_secret.vm_admin_username.value
+    admin_password = data.azurerm_key_vault_secret.vm_admin_password.value
   }
 
   os_profile_linux_config {
