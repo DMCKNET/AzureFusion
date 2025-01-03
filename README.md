@@ -10,7 +10,7 @@ I designed a hybrid networking environment where on-premises networks connected 
 
 ### Technologies Used
 
-- **Terraform**
+**Terraform**
 - **Azure Resource Manager (ARM)**
 - **Azure Virtual Network**
 - **Azure VPN Gateway**
@@ -19,6 +19,9 @@ I designed a hybrid networking environment where on-premises networks connected 
 - **Azure Private Link**
 - **Azure DNS**
 - **Azure Load Balancer**
+- **Azure SQL Database**
+- **Azure Storage Account**
+- **Azure Key Vault**
 
 ### Steps Taken
 
@@ -54,6 +57,11 @@ I designed a hybrid networking environment where on-premises networks connected 
 
 - **Configured Azure DNS**: Set up custom domain names for resources using Azure DNS.
 - **Implemented Azure Load Balancer**: Distributed traffic across VMs in the WebApp Subnet using Azure Load Balancer.
+
+#### Azure Key Vault Integration
+
+- **Stored Secrets in Azure Key Vault**: Stored sensitive information such as admin usernames and passwords in Azure Key Vault.
+- **Configured Access to Key Vault**: Ensured that the service principal has the necessary permissions to access secrets in the Key Vault.
 
 #### Performance and Security Testing
 
