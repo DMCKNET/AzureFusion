@@ -1,39 +1,31 @@
-variable "key_vault_name" {
-  description = "The name of the Key Vault"
+variable "admin_username" {
+  description = "Admin username for the VM"
   type        = string
 }
 
-variable "location" {
-  description = "Azure region"
+variable "admin_password" {
+  description = "Admin password for the VM"
+  type        = string
+  sensitive   = true
+}
+
+variable "tenant_id" {
+  description = "The tenant ID for your Azure subscription"
   type        = string
 }
 
-variable "resource_group_name" {
-  description = "The name of the resource group"
+variable "subscription_id" {
+  description = "The subscription ID for your Azure subscription"
   type        = string
 }
 
-variable "vnet_name" {
-  description = "The name of the virtual network"
+variable "client_id" {
+  description = "The client ID for your Azure service principal"
   type        = string
 }
 
-variable "address_space" {
-  description = "The address space for the virtual network"
-  type        = list(string)
-}
-
-variable "vm_name" {
-  description = "The name of the virtual machine"
+variable "client_secret" {
+  description = "The client secret for your Azure service principal"
   type        = string
-}
-
-variable "vm_size" {
-  description = "The size of the virtual machine"
-  type        = string
-}
-
-variable "subnet_id" {
-  description = "The ID of the subnet"
-  type        = string
+  sensitive   = true
 }
