@@ -1,7 +1,7 @@
 resource "azurerm_network_security_group" "admin_nsg" {
-  name                = "admin-nsg"
-  location            = azurerm_resource_group.main.location
-  resource_group_name = azurerm_resource_group.main.name
+  name                = var.nsg_names["admin"]
+  location            = var.location
+  resource_group_name = var.resource_group_name
 
   security_rule {
     name                       = "allow-ssh-rdp"
@@ -29,14 +29,14 @@ resource "azurerm_network_security_group" "admin_nsg" {
 }
 
 resource "azurerm_subnet_network_security_group_association" "admin_nsg_association" {
-  subnet_id                 = azurerm_subnet.admin.id
+  subnet_id                 = var.subnet_ids["admin"]
   network_security_group_id = azurerm_network_security_group.admin_nsg.id
 }
 
 resource "azurerm_network_security_group" "webapp_nsg" {
-  name                = "webapp-nsg"
-  location            = azurerm_resource_group.main.location
-  resource_group_name = azurerm_resource_group.main.name
+  name                = var.nsg_names["webapp"]
+  location            = var.location
+  resource_group_name = var.resource_group_name
 
   security_rule {
     name                       = "allow-https"
@@ -64,14 +64,14 @@ resource "azurerm_network_security_group" "webapp_nsg" {
 }
 
 resource "azurerm_subnet_network_security_group_association" "webapp_nsg_association" {
-  subnet_id                 = azurerm_subnet.webapp.id
+  subnet_id                 = var.subnet_ids["webapp"]
   network_security_group_id = azurerm_network_security_group.webapp_nsg.id
 }
 
 resource "azurerm_network_security_group" "database_nsg" {
-  name                = "database-nsg"
-  location            = azurerm_resource_group.main.location
-  resource_group_name = azurerm_resource_group.main.name
+  name                = var.nsg_names["database"]
+  location            = var.location
+  resource_group_name = var.resource_group_name
 
   security_rule {
     name                       = "allow-webapp-to-db"
@@ -81,7 +81,7 @@ resource "azurerm_network_security_group" "database_nsg" {
     protocol                   = "*"
     source_port_range          = "*"
     destination_port_range     = "*"
-    source_address_prefix      = azurerm_subnet.webapp.address_prefixes[0]
+    source_address_prefix      = var.subnet_prefixes["webapp"]
     destination_address_prefix = "*"
   }
 
@@ -99,6 +99,6 @@ resource "azurerm_network_security_group" "database_nsg" {
 }
 
 resource "azurerm_subnet_network_security_group_association" "database_nsg_association" {
-  subnet_id                 = azurerm_subnet.database.id
+  subnet_id                 = var.subnet_ids["database"]
   network_security_group_id = azurerm_network_security_group.database_nsg.id
 }
