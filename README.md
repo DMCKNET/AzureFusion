@@ -6,7 +6,7 @@ A project to design a hybrid networking environment using Azure's networking cap
 
 I designed a hybrid networking environment where on-premises networks connected securely to Azure resources using Azure's networking capabilities, ensuring secure data transition and effective resource access controls. This project involved setting up a comprehensive Azure infrastructure using Terraform. The key components included creating virtual networks, subnets, public IPs, VPN gateways, local network gateways, and establishing VPN connections. Additionally, I configured Private DNS Zones and other necessary network resources.
 
-![AzureFusion Architecture](path/to/diagram.png)
+![AzureFusion Architecture](images/AzureFusionDiagram.png)
 
 ### Technologies Used
 
