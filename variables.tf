@@ -19,28 +19,43 @@ variable "client_secret" {
   sensitive   = true
 }
 
-variable "resource_group_name" {
-  description = "The name of the resource group"
+variable "location" {
+  description = "Azure region"
   type        = string
 }
 
-variable "location" {
-  description = "The location for the Azure resources"
+variable "resource_group_name" {
+  description = "Resource group name"
   type        = string
 }
 
 variable "vm_name" {
-  description = "Virtual Machine name"
+  description = "Name of the virtual machine"
+  type        = string
+}
+
+variable "vm_name_2" {
+  description = "Name of the second virtual machine"
+  type        = string
+}
+
+variable "vm_size" {
+  description = "Size of the virtual machine"
   type        = string
 }
 
 variable "nic_name" {
-  description = "Network Interface name"
+  description = "Network interface name"
+  type        = string
+}
+
+variable "nic_name_2" {
+  description = "Network interface name for the second VM"
   type        = string
 }
 
 variable "prefix" {
-  description = "Prefix for all resources"
+  description = "Resource name prefix"
   type        = string
 }
 
@@ -69,66 +84,6 @@ variable "subnet_names" {
   type        = map(string)
 }
 
-variable "public_ip_names" {
-  description = "The names of the public IPs"
-  type        = map(string)
-}
-
-variable "private_dns_zone_name" {
-  description = "The name of the private DNS zone"
-  type        = string
-}
-
-variable "private_dns_link_name" {
-  description = "The name of the private DNS link"
-  type        = string
-}
-
-variable "private_dns_record_name" {
-  description = "The name of the private DNS record"
-  type        = string
-}
-
-variable "local_network_gateway_name" {
-  description = "The name of the local network gateway"
-  type        = string
-}
-
-variable "vpn_connection_name" {
-  description = "The name of the VPN connection"
-  type        = string
-}
-
-variable "onprem_vnet_name" {
-  description = "The name of the on-premises virtual network"
-  type        = string
-}
-
-variable "onprem_address_space" {
-  description = "The address space for the on-premises virtual network"
-  type        = list(string)
-}
-
-variable "onprem_subnet_names" {
-  description = "The names of the on-premises subnets"
-  type        = map(string)
-}
-
-variable "sql_server_name" {
-  description = "The name of the SQL server"
-  type        = string
-}
-
-variable "sql_database_name" {
-  description = "The name of the SQL database"
-  type        = string
-}
-
-variable "bastion_host_name" {
-  description = "The name of the Bastion host"
-  type        = string
-}
-
 variable "lb_name" {
   description = "The name of the Load Balancer"
   type        = string
@@ -146,5 +101,30 @@ variable "lb_backend_pool_name" {
 
 variable "lb_rule_name" {
   description = "The name of the Load Balancer rule"
+  type        = string
+}
+
+variable "public_ip_names" {
+  description = "The names of the public IP addresses"
+  type        = map(string)
+}
+
+variable "bastion_host_name" {
+  description = "The name of the Bastion Host"
+  type        = string
+}
+
+variable "onprem_subnet_names" {
+  description = "The names of the on-premise subnets"
+  type        = map(string)
+}
+
+variable "onprem_vnet_name" {
+  description = "The name of the on-premise Virtual Network"
+  type        = string
+}
+
+variable "sql_server_name" {
+  description = "The name of the SQL server"
   type        = string
 }

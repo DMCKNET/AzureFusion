@@ -30,12 +30,12 @@ resource "azurerm_subnet" "database" {
   name                 = var.subnet_names["database"]
   resource_group_name  = var.resource_group_name
   virtual_network_name = azurerm_virtual_network.main.name
-  address_prefixes     = ["10.0.5.0/24"]
+  address_prefixes     = ["10.0.4.0/24"]
 }
 
 resource "azurerm_subnet" "admin" {
   name                 = var.subnet_names["admin"]
   resource_group_name  = var.resource_group_name
   virtual_network_name = azurerm_virtual_network.main.name
-  address_prefixes     = ["10.0.4.0/24"]
+  address_prefixes     = ["10.0.5.0/24"]
 }

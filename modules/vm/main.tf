@@ -5,7 +5,7 @@ resource "azurerm_network_interface" "main" {
 
   ip_configuration {
     name                          = "internal"
-    subnet_id                     = var.subnet_id
+    subnet_id                     = module.vnet.subnet_ids["webapp"]
     private_ip_address_allocation = "Dynamic"
   }
 }
@@ -44,4 +44,12 @@ resource "azurerm_virtual_machine" "main" {
   tags = {
     environment = "development"
   }
+}
+
+output "nic_id" {
+  value = azurerm_network_interface.main.id
+}
+
+output "vm_id" {
+  value = azurerm_virtual_machine.main.id
 }

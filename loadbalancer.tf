@@ -21,7 +21,17 @@ resource "azurerm_lb_backend_address_pool" "main" {
   loadbalancer_id = azurerm_lb.main.id
 }
 
-resource "azurerm_lb_rule" "http_rule" {
+resource "azurerm_lb_probe" "main" {
+  name                = "http-probe"
+  loadbalancer_id     = azurerm_lb.main.id
+  protocol            = "Http"
+  port                = 80
+  request_path        = "/"
+  interval_in_seconds = 5
+  number_of_probes    = 2
+}
+
+resource "azurerm_lb_rule" "main" {
   name                           = var.lb_rule_name
   loadbalancer_id                = azurerm_lb.main.id
   protocol                       = "Tcp"
@@ -29,10 +39,12 @@ resource "azurerm_lb_rule" "http_rule" {
   backend_port                   = 80
   frontend_ip_configuration_name = var.lb_frontend_ip_name
   backend_address_pool_ids       = [azurerm_lb_backend_address_pool.main.id]
+  probe_id                       = azurerm_lb_probe.main.id
 }
 
 resource "azurerm_network_interface_backend_address_pool_association" "webapp_vm_nic_association" {
-  network_interface_id   = module.vm.nic_id
-  ip_configuration_name  = "internal"
+  count                   = 2
+  network_interface_id    = element([azurerm_network_interface.main.id, azurerm_network_interface.main_2.id], count.index)
+  ip_configuration_name   = "internal"
   backend_address_pool_id = azurerm_lb_backend_address_pool.main.id
 }
