@@ -9,48 +9,23 @@ variable "tenant_id" {
 }
 
 variable "client_id" {
-  description = "The client ID for the service principal"
+  description = "The client ID for the Azure account"
   type        = string
 }
 
 variable "client_secret" {
-  description = "The client secret for the service principal"
+  description = "The client secret for the Azure account"
   type        = string
   sensitive   = true
 }
 
-variable "location" {
-  description = "Azure region"
-  type        = string
-}
-
 variable "resource_group_name" {
-  description = "Resource group name"
+  description = "The name of the resource group"
   type        = string
 }
 
-variable "vm_name" {
-  description = "Name of the virtual machine"
-  type        = string
-}
-
-variable "vm_name_2" {
-  description = "Name of the second virtual machine"
-  type        = string
-}
-
-variable "vm_size" {
-  description = "Size of the virtual machine"
-  type        = string
-}
-
-variable "nic_name" {
-  description = "Network interface name"
-  type        = string
-}
-
-variable "nic_name_2" {
-  description = "Network interface name for the second VM"
+variable "location" {
+  description = "The location for the resources"
   type        = string
 }
 
@@ -59,23 +34,19 @@ variable "prefix" {
   type        = string
 }
 
-variable "key_vault_name" {
-  description = "The name of the Key Vault"
+variable "ssl_certificate_password" {
+  description = "Password for the SSL certificate"
   type        = string
-}
-
-variable "key_vault_resource_group" {
-  description = "Resource Group of the Key Vault"
-  type        = string
+  sensitive   = true
 }
 
 variable "vnet_name" {
-  description = "The name of the Virtual Network"
+  description = "The name of the virtual network"
   type        = string
 }
 
 variable "address_space" {
-  description = "The address space for the Virtual Network"
+  description = "The address space for the virtual network"
   type        = list(string)
 }
 
@@ -84,33 +55,13 @@ variable "subnet_names" {
   type        = map(string)
 }
 
-variable "lb_name" {
-  description = "The name of the Load Balancer"
+variable "key_vault_name" {
+  description = "The name of the Key Vault"
   type        = string
 }
 
-variable "lb_frontend_ip_name" {
-  description = "The name of the Load Balancer frontend IP configuration"
-  type        = string
-}
-
-variable "lb_backend_pool_name" {
-  description = "The name of the Load Balancer backend address pool"
-  type        = string
-}
-
-variable "lb_rule_name" {
-  description = "The name of the Load Balancer rule"
-  type        = string
-}
-
-variable "public_ip_names" {
-  description = "The names of the public IP addresses"
-  type        = map(string)
-}
-
-variable "bastion_host_name" {
-  description = "The name of the Bastion Host"
+variable "key_vault_resource_group" {
+  description = "The resource group name for the Key Vault"
   type        = string
 }
 
@@ -120,11 +71,64 @@ variable "onprem_subnet_names" {
 }
 
 variable "onprem_vnet_name" {
-  description = "The name of the on-premise Virtual Network"
+  description = "The name of the on-premise virtual network"
+  type        = string
+}
+
+variable "bastion_host_name" {
+  description = "The name of the Bastion Host"
+  type        = string
+}
+
+variable "lb_name" {
+  description = "The name of the Load Balancer"
+  type        = string
+}
+
+variable "lb_frontend_ip_name" {
+  description = "The name of the Load Balancer Frontend IP Configuration"
+  type        = string
+}
+
+variable "lb_backend_pool_name" {
+  description = "The name of the Load Balancer Backend Pool"
+  type        = string
+}
+
+variable "nic_name" {
+  description = "The name of the Network Interface"
+  type        = string
+}
+
+variable "nic_name_2" {
+  description = "The name of the second Network Interface"
   type        = string
 }
 
 variable "sql_server_name" {
-  description = "The name of the SQL server"
+  description = "The name of the SQL Server"
   type        = string
+}
+
+variable "vm_name" {
+  description = "The name of the Virtual Machine"
+  type        = string
+}
+
+variable "vm_size" {
+  description = "The size of the Virtual Machine"
+  type        = string
+}
+
+variable "vm_name_2" {
+  description = "The name of the second Virtual Machine"
+  type        = string
+}
+variable "lb_rule_name" {
+  description = "The name of the Load Balancer Rule"
+  type        = string
+}
+variable "public_ip_names" {
+  description = "The names of the public IP addresses"
+  type        = map(string)
 }
