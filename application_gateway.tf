@@ -20,7 +20,7 @@ resource "azurerm_application_gateway" "main" {
     name      = "appGatewayIpConfig"
     subnet_id = module.vnet.subnet_ids["webapp"]
   }
-
+  
   frontend_ip_configuration {
     name                 = "appGatewayFrontendIP"
     public_ip_address_id = azurerm_public_ip.app_gateway.id
