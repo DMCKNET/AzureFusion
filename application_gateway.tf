@@ -1,11 +1,3 @@
-resource "azurerm_public_ip" "app_gateway" {
-  name                = "${var.prefix}-app-gateway-pip"
-  location            = var.location
-  resource_group_name = var.resource_group_name
-  allocation_method   = "Static"
-  sku                 = "Standard"
-}
-
 resource "azurerm_application_gateway" "main" {
   name                = "${var.prefix}-app-gateway"
   location            = var.location
@@ -37,9 +29,8 @@ resource "azurerm_application_gateway" "main" {
   }
 
   ssl_certificate {
-    name     = "appGatewaySslCert"
-    data     = filebase64("${path.module}/certs/appgateway.pfx")
-    password = var.ssl_certificate_password
+    name                = "appGatewaySslCert"
+    key_vault_secret_id = azurerm_key_vault_certificate.appgateway_ssl_cert.secret_id
   }
 
   http_listener {

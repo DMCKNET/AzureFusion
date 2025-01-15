@@ -34,12 +34,6 @@ variable "prefix" {
   type        = string
 }
 
-variable "ssl_certificate_password" {
-  description = "Password for the SSL certificate"
-  type        = string
-  sensitive   = true
-}
-
 variable "vnet_name" {
   description = "The name of the virtual network"
   type        = string
