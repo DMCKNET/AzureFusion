@@ -4,4 +4,16 @@ resource "azurerm_storage_account" "main" {
   location                 = var.location
   account_tier             = "Standard"
   account_replication_type = "LRS"
+
+  enable_https_traffic_only = true
+
+  blob_properties {
+    delete_retention_policy {
+      days = 7
+    }
+  }
+
+  tags = {
+    environment = "development"
+  }
 }

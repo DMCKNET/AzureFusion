@@ -3,7 +3,7 @@ data "azurerm_client_config" "current" {}
 resource "azurerm_key_vault" "example" {
   name                        = "AzureFusionKeyVault"
   location                    = var.location
-  resource_group_name         = "AzureFusionRG"
+  resource_group_name         = var.resource_group_name
   tenant_id                   = data.azurerm_client_config.current.tenant_id
   sku_name                    = "standard"
 
@@ -39,12 +39,17 @@ resource "azurerm_key_vault" "example" {
   }
 }
 
+data "azurerm_key_vault_secret" "ssl_certificate_password" {
+  name         = "appgateway-ssl-cert-password"
+  key_vault_id = azurerm_key_vault.example.id
+}
+
 resource "azurerm_key_vault_certificate" "appgateway_ssl_cert" {
   name         = "appgateway-ssl-cert"
   key_vault_id = azurerm_key_vault.example.id
 
   certificate {
     contents = filebase64("${path.module}/certs/appgateway.pfx")
-    password = "AzureFusion123$"  # Replace with the actual password if needed
+    password = data.azurerm_key_vault_secret.ssl_certificate_password.value
   }
 }
