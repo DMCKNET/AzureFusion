@@ -16,7 +16,8 @@ I designed a hybrid networking environment where on-premises networks connected 
 - **Network Security Groups (NSGs)**
 - **Azure Bastion**
 - **Azure Private Link**
-- **Azure DNS**
+- **Azure Private DNS Zone**
+- **Application Gateway**
 - **Azure Load Balancer**
 - **Azure SQL Database**
 - **Azure Storage Account**
@@ -71,19 +72,18 @@ I designed a hybrid networking environment where on-premises networks connected 
 #### Monitoring and Security
 
 - **Set Up Azure Monitor**: Configured Azure Monitor to collect metrics and set up alerts for resource monitoring.
-- **Activated Azure Security Center (Defender)**: Enabled the free tier of Azure Security Center (Defender) to enhance security with continuous assessment and basic security features.
-
-#### Diagnostic Settings
-
-- **Configured Diagnostic Settings**: Set up diagnostic settings to send logs and metrics to Azure Monitor and Log Analytics.
-
-#### Alert Rules
-
-- **Configured Alert Rules**: Set up alert rules to notify when certain conditions are met, such as high CPU usage.
+- **Configured Log Analytics Workspace**: Set up a Log Analytics Workspace to collect and analyze logs from Azure resources.
+- **Configured Diagnostic Settings**: Enabled diagnostic settings for resources to send logs and metrics to the Log Analytics Workspace.
+- **Set Up Metric Alerts**: Configured metric alerts to notify when specific conditions are met, such as high CPU usage.
+- **Configured Azure Security Center**: Enabled Azure Security Center (Defender) for continuous security assessment and recommendations.
 
 #### Storage Account Configuration
 
-- **Provisioned Azure Storage Account**: Set up an Azure Storage Account for data storage, ensuring secure and scalable storage solutions.
+- **Configured Azure Storage Account**: Set up a storage account for data storage with secure access and retention policies.
+
+#### Implement ZTNA
+
+- **Implement ZTNA**: Provide secure remote access to applications and resources.
 
 #### Enabled MFA
 
@@ -140,4 +140,3 @@ The project also adheres to Zero Trust Architecture principles:
 - **Develop Incident Response Plan**: Create and test an incident response plan.
 - **Ensure Device Security**: Verify that all devices meet security standards.
 - **Implement User Behavior Analytics**: Detect and respond to anomalous activities.
-- **Implement ZTNA**: Provide secure remote access to applications and resources.
