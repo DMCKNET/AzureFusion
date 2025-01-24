@@ -22,6 +22,9 @@ jobs:
         with:
           terraform_version: 1.10.4
 
+      - name: Set TF_LOG to DEBUG
+        run: echo "TF_LOG=DEBUG" >> $GITHUB_ENV
+
       - name: Terraform Init
         env:
           ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
