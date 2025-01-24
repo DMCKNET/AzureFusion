@@ -173,3 +173,16 @@ output "vm_admin_password" {
 output "vpn_shared_key" {
   value = nonsensitive(data.azurerm_key_vault_secret.vpn_shared_key.value)
 }
+resource "azurerm_subnet" "example" {
+  name                 = var.subnet_names["webapp"]
+  resource_group_name  = var.resource_group_name
+  virtual_network_name = azurerm_virtual_network.main.name
+  address_prefixes     = ["10.0.1.0/24"]
+}
+resource "azurerm_public_ip" "example" {
+  name                = var.public_ip_names["lb"]
+  location            = var.location
+  resource_group_name = var.resource_group_name
+  allocation_method   = "Static"
+  sku                 = "Standard"
+}

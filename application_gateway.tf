@@ -65,7 +65,7 @@ resource "azurerm_application_gateway" "main" {
   }
 
   url_path_map {
-    name                = "urlpathmap"
+    name                             = "urlpathmap"
     default_backend_address_pool_name = "appGatewayBackendPool"
     default_backend_http_settings_name = "appGatewayBackendHttpSettings"
 
@@ -86,10 +86,10 @@ resource "azurerm_application_gateway" "main" {
   }
 
   redirect_configuration {
-    name        = "httpToHttpsRedirectConfig"
-    redirect_type = "Permanent"
+    name                 = "httpToHttpsRedirectConfig"
+    redirect_type        = "Permanent"
     target_listener_name = "appGatewayHttpListenerRedirect"
-    include_path = true
+    include_path         = true
     include_query_string = true
   }
 
@@ -105,5 +105,22 @@ resource "azurerm_application_gateway" "main" {
     firewall_mode      = "Prevention"
     rule_set_type      = "OWASP"
     rule_set_version   = "3.2"
+  }
+
+  probe {
+    name                = "exampleProbe"
+    protocol            = "Http"
+    path                = "/"
+    interval            = 30
+    timeout             = 30
+    unhealthy_threshold = 3
+    pick_host_name_from_backend_http_settings = true
+    match {
+      status_code = ["200-399"]
+    }
+  }
+
+  tags = {
+    environment = "Production"
   }
 }
