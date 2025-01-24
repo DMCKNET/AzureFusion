@@ -37,6 +37,35 @@ jobs:
         run: terraform validate
 
       - name: Terraform Plan
+        env:
+          TF_VAR_address_space: "10.0.0.0/16"
+          TF_VAR_public_ip_names: '["public-ip-1", "public-ip-2"]'
+          TF_VAR_subnet_names: '["subnet-1", "subnet-2"]'
+          TF_VAR_bastion_host_name: "bastion-host"
+          TF_VAR_nic_name_2: "nic-2"
+          TF_VAR_vm_name: "vm-1"
+          TF_VAR_vm_size: "Standard_DS1_v2"
+          TF_VAR_vm_name_2: "vm-2"
+          TF_VAR_client_id: ${{ secrets.ARM_CLIENT_ID }}
+          TF_VAR_key_vault_name: "AzureFusionKeyVault"
+          TF_VAR_onprem_vnet_name: "onprem-vnet"
+          TF_VAR_nic_name: "nic-1"
+          TF_VAR_resource_group_name: "AzureFusionRG"
+          TF_VAR_vnet_name: "fusion-vnet"
+          TF_VAR_service_principal_object_id: "your-service-principal-object-id"
+          TF_VAR_subscription_id: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+          TF_VAR_prefix: "fusion"
+          TF_VAR_onprem_subnet_names: '["onprem-subnet-1", "onprem-subnet-2"]'
+          TF_VAR_lb_backend_pool_name: "lb-backend-pool"
+          TF_VAR_location: "EastUS"
+          TF_VAR_sql_server_name: "sql-server"
+          TF_VAR_onprem_vnet_id: "onprem-vnet-id"
+          TF_VAR_client_secret: ${{ secrets.ARM_CLIENT_SECRET }}
+          TF_VAR_lb_frontend_ip_name: "lb-frontend-ip"
+          TF_VAR_main_vnet_id: "main-vnet-id"
+          TF_VAR_tenant_id: ${{ secrets.ARM_TENANT_ID }}
+          TF_VAR_key_vault_resource_group: "AzureFusionRG"
+          TF_VAR_lb_name: "load-balancer"
         run: terraform plan
 
       - name: Terraform Apply
