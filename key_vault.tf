@@ -1,3 +1,7 @@
+// This file defines the Azure Key Vault and its access policies, as well as data sources for retrieving
+// the SSL certificate and its password from the Key Vault. The Key Vault is used to securely store
+// secrets and certificates needed for the Azure Application Gateway.
+
 resource "azurerm_key_vault" "example" {
   name                        = var.key_vault_name
   location                    = var.location
