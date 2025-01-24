@@ -36,6 +36,11 @@ jobs:
       - name: Terraform Validate
         run: terraform validate
 
+      - name: Output Terraform Version and Environment Variables
+        run: |
+          terraform version
+          env
+
       - name: Terraform Plan
         env:
           ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
@@ -46,7 +51,7 @@ jobs:
           TF_VAR_tenant_id: ${{ secrets.ARM_TENANT_ID }}
           TF_VAR_client_id: ${{ secrets.ARM_CLIENT_ID }}
           TF_VAR_client_secret: ${{ secrets.ARM_CLIENT_SECRET }}
-          TF_VAR_service_principal_object_id: "53adf89f-7ab4-4582-afb8-df4a61022a8e"
+          TF_VAR_service_principal_object_id: ${{ secrets.SERVICE_PRINCIPAL_OBJECT_ID }}
           TF_VAR_address_space: '["10.0.0.0/16"]'
           TF_VAR_key_vault_name: "AzureFusionKeyVault"
           TF_VAR_key_vault_resource_group: "AzureFusionRG"
@@ -69,8 +74,8 @@ jobs:
           TF_VAR_onprem_vnet_name: "onprem-vnet"
           TF_VAR_sql_server_name: "azfusionsql"
           TF_VAR_vm_size: "Standard_B1s"
-          TF_VAR_main_vnet_id: "/subscriptions/970b1e0b-75cb-4721-99df-45bf7e5fb2c1/resourceGroups/AzureFusionRG/providers/Microsoft.Network/virtualNetworks/fusion-vnet"
-          TF_VAR_onprem_vnet_id: "/subscriptions/970b1e0b-75cb-4721-99df-45bf7e5fb2c1/resourceGroups/AzureFusionRG/providers/Microsoft.Network/virtualNetworks/onprem-vnet"
+          TF_VAR_main_vnet_id: ${{ secrets.MAIN_VNET_ID }}
+          TF_VAR_onprem_vnet_id: ${{ secrets.ONPREM_VNET_ID }}
         run: terraform plan
 
       - name: Terraform Apply
@@ -84,7 +89,7 @@ jobs:
           TF_VAR_tenant_id: ${{ secrets.ARM_TENANT_ID }}
           TF_VAR_client_id: ${{ secrets.ARM_CLIENT_ID }}
           TF_VAR_client_secret: ${{ secrets.ARM_CLIENT_SECRET }}
-          TF_VAR_service_principal_object_id: "53adf89f-7ab4-4582-afb8-df4a61022a8e"
+          TF_VAR_service_principal_object_id: ${{ secrets.SERVICE_PRINCIPAL_OBJECT_ID }}
           TF_VAR_address_space: '["10.0.0.0/16"]'
           TF_VAR_key_vault_name: "AzureFusionKeyVault"
           TF_VAR_key_vault_resource_group: "AzureFusionRG"
@@ -107,6 +112,6 @@ jobs:
           TF_VAR_onprem_vnet_name: "onprem-vnet"
           TF_VAR_sql_server_name: "azfusionsql"
           TF_VAR_vm_size: "Standard_B1s"
-          TF_VAR_main_vnet_id: "/subscriptions/970b1e0b-75cb-4721-99df-45bf7e5fb2c1/resourceGroups/AzureFusionRG/providers/Microsoft.Network/virtualNetworks/fusion-vnet"
-          TF_VAR_onprem_vnet_id: "/subscriptions/970b1e0b-75cb-4721-99df-45bf7e5fb2c1/resourceGroups/AzureFusionRG/providers/Microsoft.Network/virtualNetworks/onprem-vnet"
-        run: terraform apply -auto-approve
+          TF_VAR_main_vnet_id: ${{ secrets.MAIN_VNET_ID }}
+          TF_VAR_onprem_vnet_id: ${{ secrets.ONPREM_VNET_ID }}
+        run: terraform apply -auto-approve 
