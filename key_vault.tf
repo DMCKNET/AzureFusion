@@ -1,40 +1,29 @@
-data "azurerm_client_config" "current" {}
-
 resource "azurerm_key_vault" "example" {
-  name                        = "AzureFusionKeyVault"
+  name                        = var.key_vault_name
   location                    = var.location
   resource_group_name         = var.resource_group_name
-  tenant_id                   = data.azurerm_client_config.current.tenant_id
+  tenant_id                   = var.tenant_id
   sku_name                    = "standard"
 
   purge_protection_enabled    = true
 
   access_policy {
-    tenant_id = data.azurerm_client_config.current.tenant_id
-    object_id = data.azurerm_client_config.current.object_id
+    tenant_id = var.tenant_id
+    object_id = var.service_principal_object_id
 
     certificate_permissions = [
       "Get",
       "List",
       "Import",
-      "Delete",
       "Create",
-      "Update",
-      "ManageContacts",
-      "GetIssuers",
-      "ListIssuers",
-      "SetIssuers",
-      "DeleteIssuers",
+      "Update"
     ]
 
     secret_permissions = [
       "Get",
       "List",
       "Set",
-      "Delete",
-      "Recover",
-      "Backup",
-      "Restore",
+      "Delete"
     ]
   }
 }
@@ -49,7 +38,7 @@ resource "azurerm_key_vault_certificate" "appgateway_ssl_cert" {
   key_vault_id = azurerm_key_vault.example.id
 
   certificate {
-    contents = filebase64("${path.module}/certs/appgateway.pfx")
+    contents = filebase64("${path.module}/certs/appgateway.pfx")  
     password = data.azurerm_key_vault_secret.ssl_certificate_password.value
   }
 }

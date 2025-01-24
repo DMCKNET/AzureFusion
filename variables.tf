@@ -126,3 +126,14 @@ variable "public_ip_names" {
   description = "The names of the public IP addresses"
   type        = map(string)
 }
+variable "service_principal_object_id" {
+  description = "The object ID of the service principal."
+  type        = string
+}
+variable "main_vnet_id" {
+  description = "The ID of the main virtual network"
+}
+
+variable "onprem_vnet_id" {
+  description = "The ID of the on-prem virtual network"
+}

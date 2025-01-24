@@ -39,3 +39,10 @@ resource "azurerm_subnet" "admin" {
   virtual_network_name = azurerm_virtual_network.main.name
   address_prefixes     = ["10.0.5.0/24"]
 }
+
+resource "azurerm_subnet" "appgateway" {
+  name                 = "appgateway-subnet"
+  resource_group_name  = var.resource_group_name
+  virtual_network_name = azurerm_virtual_network.main.name
+  address_prefixes     = ["10.0.6.0/24"]
+}

@@ -1,3 +1,9 @@
+resource "azurerm_user_assigned_identity" "appgw_identity" {
+  name                = "appgw-identity"
+  resource_group_name = var.resource_group_name
+  location            = var.location
+}
+
 resource "azurerm_application_gateway" "main" {
   name                = "${var.prefix}-app-gateway"
   location            = var.location
@@ -8,11 +14,16 @@ resource "azurerm_application_gateway" "main" {
     capacity = 2
   }
 
+  identity {
+    type         = "UserAssigned"
+    identity_ids = [azurerm_user_assigned_identity.appgw_identity.id]
+  }
+
   gateway_ip_configuration {
     name      = "appGatewayIpConfig"
-    subnet_id = module.vnet.subnet_ids["webapp"]
+    subnet_id = module.vnet.subnet_ids["appgateway"]
   }
-  
+
   frontend_ip_configuration {
     name                 = "appGatewayFrontendIP"
     public_ip_address_id = azurerm_public_ip.app_gateway.id
@@ -30,22 +41,15 @@ resource "azurerm_application_gateway" "main" {
 
   ssl_certificate {
     name                = "appGatewaySslCert"
-    key_vault_secret_id = azurerm_key_vault_certificate.appgateway_ssl_cert.secret_id
+    key_vault_secret_id = "https://azurefusionkeyvault.vault.azure.net/secrets/appgateway-ssl-cert/1cdf41fb3a1f44b5a10f9f5deedcc7fc"
   }
 
   http_listener {
     name                           = "appGatewayHttpListener"
     frontend_ip_configuration_name = "appGatewayFrontendIP"
-    frontend_port_name             = "httpPort"
-    protocol                       = "Http"
-  }
-
-  http_listener {
-    name                           = "appGatewayHttpsListener"
-    frontend_ip_configuration_name = "appGatewayFrontendIP"
     frontend_port_name             = "httpsPort"
-    protocol                       = "Https"
     ssl_certificate_name           = "appGatewaySslCert"
+    protocol                       = "Https"
   }
 
   backend_address_pool {
@@ -61,7 +65,7 @@ resource "azurerm_application_gateway" "main" {
   }
 
   url_path_map {
-    name                = "urlPathMap"
+    name                = "urlpathmap"
     default_backend_address_pool_name = "appGatewayBackendPool"
     default_backend_http_settings_name = "appGatewayBackendHttpSettings"
 
@@ -78,14 +82,22 @@ resource "azurerm_application_gateway" "main" {
     rule_type                  = "Basic"
     http_listener_name         = "appGatewayHttpListener"
     redirect_configuration_name = "httpToHttpsRedirectConfig"
+    priority                   = 100
   }
 
   redirect_configuration {
     name        = "httpToHttpsRedirectConfig"
     redirect_type = "Permanent"
-    target_listener_name = "appGatewayHttpsListener"
+    target_listener_name = "appGatewayHttpListenerRedirect"
     include_path = true
     include_query_string = true
+  }
+
+  http_listener {
+    name                           = "appGatewayHttpListenerRedirect"
+    frontend_ip_configuration_name = "appGatewayFrontendIP"
+    frontend_port_name             = "httpPort"
+    protocol                       = "Http"
   }
 
   waf_configuration {
@@ -93,9 +105,5 @@ resource "azurerm_application_gateway" "main" {
     firewall_mode      = "Prevention"
     rule_set_type      = "OWASP"
     rule_set_version   = "3.2"
-  }
-
-  tags = {
-    environment = "development"
   }
 }

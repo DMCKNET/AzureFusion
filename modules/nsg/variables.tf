@@ -22,3 +22,7 @@ variable "subnet_prefixes" {
   description = "Subnet prefixes for the Network Security Groups"
   type        = map(string)
 }
+variable "vnet_address_space" {
+  description = "Address space of the VNet"
+  type        = string
+}

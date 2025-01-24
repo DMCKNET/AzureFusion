@@ -3,11 +3,18 @@ resource "azurerm_private_dns_zone" "sql_zone" {
   resource_group_name = azurerm_resource_group.main.name
 }
 
-resource "azurerm_private_dns_zone_virtual_network_link" "sql_link" {
-  name                  = "fusion-link"
+resource "azurerm_private_dns_zone_virtual_network_link" "sql_link_vnet1" {
+  name                  = "fusion-link-vnet1"
   resource_group_name   = azurerm_resource_group.main.name
   private_dns_zone_name = azurerm_private_dns_zone.sql_zone.name
-  virtual_network_id    = module.vnet.vnet_id
+  virtual_network_id    = var.main_vnet_id
+}
+
+resource "azurerm_private_dns_zone_virtual_network_link" "sql_link_vnet2" {
+  name                  = "fusion-link-vnet2"
+  resource_group_name   = azurerm_resource_group.main.name
+  private_dns_zone_name = azurerm_private_dns_zone.sql_zone.name
+  virtual_network_id    = var.onprem_vnet_id
 }
 
 resource "azurerm_private_dns_a_record" "sql_record" {
