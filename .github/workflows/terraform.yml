@@ -101,4 +101,4 @@ jobs:
           TF_VAR_vm_size: "Standard_B1s"
           TF_VAR_main_vnet_id: "/subscriptions/970b1e0b-75cb-4721-99df-45bf7e5fb2c1/resourceGroups/AzureFusionRG/providers/Microsoft.Network/virtualNetworks/fusion-vnet"
           TF_VAR_onprem_vnet_id: "/subscriptions/970b1e0b-75cb-4721-99df-45bf7e5fb2c1/resourceGroups/AzureFusionRG/providers/Microsoft.Network/virtualNetworks/onprem-vnet"
-        run: terraform apply -auto-approve
+        run: terraform apply -auto-approve 
