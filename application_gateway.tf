@@ -1,3 +1,7 @@
+// This file defines the Azure Application Gateway and its associated resources, including a user-assigned managed identity.
+// The Application Gateway is configured with a WAF_v2 SKU, user-assigned identity, and frontend IP configuration.
+// It also includes the necessary gateway IP configuration and references to the public IP address and subnet.
+
 resource "azurerm_user_assigned_identity" "appgw_identity" {
   name                = "appgw-identity"
   resource_group_name = var.resource_group_name
