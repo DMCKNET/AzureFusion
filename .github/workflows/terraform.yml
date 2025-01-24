@@ -109,4 +109,4 @@ jobs:
           TF_VAR_vm_size: "Standard_B1s"
           TF_VAR_main_vnet_id: ${{ secrets.MAIN_VNET_ID }}
           TF_VAR_onprem_vnet_id: ${{ secrets.ONPREM_VNET_ID }}
-        run: terraform apply -auto-approve
+        run: terraform apply -auto-approve 
