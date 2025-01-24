@@ -137,3 +137,7 @@ variable "main_vnet_id" {
 variable "onprem_vnet_id" {
   description = "The ID of the on-prem virtual network"
 }
+variable "storage_account_name" {
+  description = "Storage Account name"
+  type        = string
+}
