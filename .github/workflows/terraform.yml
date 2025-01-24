@@ -33,15 +33,6 @@ jobs:
           ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
         run: terraform init
 
-      - name: Terraform Force Unlock
-        if: always()
-        env:
-          ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
-          ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
-          ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
-          ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
-        run: terraform force-unlock -force aff65464-4e6a-f2de-f283-571313ee84a6
-
       - name: Terraform Validate
         run: terraform validate
 
@@ -118,4 +109,4 @@ jobs:
           TF_VAR_vm_size: "Standard_B1s"
           TF_VAR_main_vnet_id: ${{ secrets.MAIN_VNET_ID }}
           TF_VAR_onprem_vnet_id: ${{ secrets.ONPREM_VNET_ID }}
-        run: terraform apply -auto-approve
+        run: terraform apply -auto-approve 
