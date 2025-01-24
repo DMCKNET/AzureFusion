@@ -33,6 +33,10 @@ jobs:
           ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
         run: terraform init
 
+      - name: Terraform Force Unlock
+        if: always()
+        run: terraform force-unlock -force ${{ secrets.LOCK_ID }}
+
       - name: Terraform Validate
         run: terraform validate
 
