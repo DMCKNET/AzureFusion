@@ -39,7 +39,13 @@ jobs:
       - name: Output Terraform Version and Environment Variables
         run: |
           terraform version
-          env
+          echo "ARM_CLIENT_ID=${{ secrets.ARM_CLIENT_ID }}"
+          echo "ARM_CLIENT_SECRET=${{ secrets.ARM_CLIENT_SECRET }}"
+          echo "ARM_SUBSCRIPTION_ID=${{ secrets.ARM_SUBSCRIPTION_ID }}"
+          echo "ARM_TENANT_ID=${{ secrets.ARM_TENANT_ID }}"
+          echo "MAIN_VNET_ID=${{ secrets.MAIN_VNET_ID }}"
+          echo "ONPREM_VNET_ID=${{ secrets.ONPREM_VNET_ID }}"
+          echo "SERVICE_PRINCIPAL_OBJECT_ID=${{ secrets.SERVICE_PRINCIPAL_OBJECT_ID }}"
 
       - name: Terraform Plan
         env:
