@@ -7,7 +7,7 @@ resource "azurerm_private_dns_zone_virtual_network_link" "sql_link_vnet1" {
   name                  = "fusion-link-vnet1"
   resource_group_name   = azurerm_resource_group.main.name
   private_dns_zone_name = azurerm_private_dns_zone.sql_zone.name
-  virtual_network_id    = var.main_vnet_id
+  virtual_network_id    = var.fusion_vnet_id
 }
 
 resource "azurerm_private_dns_zone_virtual_network_link" "sql_link_vnet2" {

@@ -130,10 +130,10 @@ variable "service_principal_object_id" {
   description = "The object ID of the service principal."
   type        = string
 }
-variable "main_vnet_id" {
-  description = "The ID of the main virtual network"
+variable "fusion_vnet_id" {
+  description = "The ID of the fusion virtual network"
+  type        = string
 }
-
 variable "onprem_vnet_id" {
   description = "The ID of the on-prem virtual network"
 }
