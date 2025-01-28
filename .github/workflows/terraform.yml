@@ -42,38 +42,6 @@ jobs:
           ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
           ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
           ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
-          TF_VAR_subscription_id: ${{ secrets.ARM_SUBSCRIPTION_ID }}
-          TF_VAR_tenant_id: ${{ secrets.ARM_TENANT_ID }}
-          TF_VAR_client_id: ${{ secrets.ARM_CLIENT_ID }}
-          TF_VAR_client_secret: ${{ secrets.ARM_CLIENT_SECRET }}
-          TF_VAR_service_principal_object_id: ${{ secrets.SERVICE_PRINCIPAL_OBJECT_ID }}
-          TF_VAR_address_space: '["10.0.0.0/16"]'
-          TF_VAR_key_vault_name: "AzureFusionKeyVault"
-          TF_VAR_key_vault_resource_group: "AzureFusionRG"
-          TF_VAR_location: "EastUS"
-          TF_VAR_resource_group_name: "AzureFusionRG"
-          TF_VAR_vm_name: "fusionvm"
-          TF_VAR_nic_name: "fusion-nic"
-          TF_VAR_prefix: "fusion"
-          TF_VAR_subnet_names: '{"webapp": "webapp-subnet", "bastion": "AzureBastionSubnet", "gateway": "gateway-subnet", "database": "database-subnet", "admin": "admin-subnet", "appgateway": "appgateway-subnet"}'
-          TF_VAR_vnet_name: "fusion-vnet"
-          TF_VAR_lb_name: "fusion-lb"
-          TF_VAR_lb_frontend_ip_name: "fusion-lb-frontend"
-          TF_VAR_lb_backend_pool_name: "fusion-lb-backend"
-          TF_VAR_lb_rule_name: "fusion-lb-rule"
-          TF_VAR_public_ip_names: '{"lb": "fusion-lb-pip"}'
-          TF_VAR_bastion_host_name: "fusion-bastion"
-          TF_VAR_vm_name_2: "fusionvm2"
-          TF_VAR_nic_name_2: "fusion-nic-2"
-          TF_VAR_onprem_subnet_names: '{"subnet1": "onprem-subnet1", "subnet2": "onprem-subnet2"}'
-          TF_VAR_onprem_vnet_name: "onprem-vnet"
-          TF_VAR_sql_server_name: "azfusionsql"
-          TF_VAR_vm_size: "Standard_B1s"
-          TF_VAR_storage_account_name: "azfusionstorage"
-          TF_VAR_vm_admin_password: ${{ secrets.VM_ADMIN_PASSWORD }}
-          TF_VAR_vm_admin_username: ${{ secrets.VM_ADMIN_USERNAME }}
-          TF_VAR_vpn_shared_key: ${{ secrets.VPN_SHARED_KEY }}
-          TF_VAR_ssl_certificate_password: ${{ secrets.SSL_CERTIFICATE_PASSWORD }}
         run: terraform plan
 
       - name: Terraform Apply
@@ -83,38 +51,6 @@ jobs:
           ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
           ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
           ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
-          TF_VAR_subscription_id: ${{ secrets.ARM_SUBSCRIPTION_ID }}
-          TF_VAR_tenant_id: ${{ secrets.ARM_TENANT_ID }}
-          TF_VAR_client_id: ${{ secrets.ARM_CLIENT_ID }}
-          TF_VAR_client_secret: ${{ secrets.ARM_CLIENT_SECRET }}
-          TF_VAR_service_principal_object_id: ${{ secrets.SERVICE_PRINCIPAL_OBJECT_ID }}
-          TF_VAR_address_space: '["10.0.0.0/16"]'
-          TF_VAR_key_vault_name: "AzureFusionKeyVault"
-          TF_VAR_key_vault_resource_group: "AzureFusionRG"
-          TF_VAR_location: "EastUS"
-          TF_VAR_resource_group_name: "AzureFusionRG"
-          TF_VAR_vm_name: "fusionvm"
-          TF_VAR_nic_name: "fusion-nic"
-          TF_VAR_prefix: "fusion"
-          TF_VAR_subnet_names: '{"webapp": "webapp-subnet", "bastion": "AzureBastionSubnet", "gateway": "gateway-subnet", "database": "database-subnet", "admin": "admin-subnet", "appgateway": "appgateway-subnet"}'
-          TF_VAR_vnet_name: "fusion-vnet"
-          TF_VAR_lb_name: "fusion-lb"
-          TF_VAR_lb_frontend_ip_name: "fusion-lb-frontend"
-          TF_VAR_lb_backend_pool_name: "fusion-lb-backend"
-          TF_VAR_lb_rule_name: "fusion-lb-rule"
-          TF_VAR_public_ip_names: '{"lb": "fusion-lb-pip"}'
-          TF_VAR_bastion_host_name: "fusion-bastion"
-          TF_VAR_vm_name_2: "fusionvm2"
-          TF_VAR_nic_name_2: "fusion-nic-2"
-          TF_VAR_onprem_subnet_names: '{"subnet1": "onprem-subnet1", "subnet2": "onprem-subnet2"}'
-          TF_VAR_onprem_vnet_name: "onprem-vnet"
-          TF_VAR_sql_server_name: "azfusionsql"
-          TF_VAR_vm_size: "Standard_B1s"
-          TF_VAR_storage_account_name: "azfusionstorage"
-          TF_VAR_vm_admin_password: ${{ secrets.VM_ADMIN_PASSWORD }}
-          TF_VAR_vm_admin_username: ${{ secrets.VM_ADMIN_USERNAME }}
-          TF_VAR_vpn_shared_key: ${{ secrets.VPN_SHARED_KEY }}
-          TF_VAR_ssl_certificate_password: ${{ secrets.SSL_CERTIFICATE_PASSWORD }}
         run: terraform apply -auto-approve
 
 # Added a comment to trigger a change
