@@ -132,3 +132,5 @@ jobs:
           TF_VAR_vpn_shared_key: "vpnSharedKey123"
           TF_VAR_ssl_certificate_password: "AzureFusion123$"
         run: terraform apply -auto-approve 
+
+        #add line to initiate change in configuration
