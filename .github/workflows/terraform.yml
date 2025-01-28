@@ -25,6 +25,11 @@ jobs:
       - name: Set TF_LOG to DEBUG
         run: echo "TF_LOG=DEBUG" >> $GITHUB_ENV
 
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
       - name: Terraform Init
         env:
           ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
@@ -52,5 +57,3 @@ jobs:
           ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
           ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
         run: terraform apply -auto-approve
-
-# Added a comment to trigger a change
