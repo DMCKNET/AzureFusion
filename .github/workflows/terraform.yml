@@ -74,7 +74,23 @@ jobs:
           TF_VAR_vm_admin_username: "adminUser"
           TF_VAR_vpn_shared_key: "vpnSharedKey123"
           TF_VAR_ssl_certificate_password: "AzureFusion123$"
-        run: terraform plan
+        run: terraform plan -out=tfplan
+
+      - name: Check tfplan File
+        run: |
+          if [ -f tfplan ]; then
+            echo "tfplan file exists."
+          else
+            echo "tfplan file does not exist."
+            exit 1
+          fi
+
+      - name: Show Terraform Plan
+        if: always()
+        run: |
+          terraform show -json tfplan > tfplan.json
+          cat tfplan.json
+          jq . tfplan.json
 
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
@@ -115,6 +131,4 @@ jobs:
           TF_VAR_vm_admin_username: "adminUser"
           TF_VAR_vpn_shared_key: "vpnSharedKey123"
           TF_VAR_ssl_certificate_password: "AzureFusion123$"
-        run: terraform apply -auto-approve
-
-# Added a comment to trigger a change 
+        run: terraform apply -auto-approve 
