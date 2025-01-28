@@ -53,6 +53,15 @@ jobs:
           TF_LOG: DEBUG
         run: terraform plan -out=tfplan
 
+      - name: Check tfplan File
+        run: |
+          if [ -f tfplan ]; then
+            echo "tfplan file exists."
+          else
+            echo "tfplan file does not exist."
+            exit 1
+          fi
+
       - name: Show Terraform Plan
         if: always()
         run: |
