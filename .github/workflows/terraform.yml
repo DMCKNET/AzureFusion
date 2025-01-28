@@ -70,6 +70,9 @@ jobs:
           TF_VAR_sql_server_name: "azfusionsql"
           TF_VAR_vm_size: "Standard_B1s"
           TF_VAR_storage_account_name: "azfusionstorage"
+          TF_VAR_vm_admin_password: "adminPassword123"
+          TF_VAR_vm_admin_username: "adminUser"
+          TF_VAR_vpn_shared_key: "vpnSharedKey123"
         run: terraform plan
 
       - name: Terraform Apply
@@ -107,4 +110,7 @@ jobs:
           TF_VAR_sql_server_name: "azfusionsql"
           TF_VAR_vm_size: "Standard_B1s"
           TF_VAR_storage_account_name: "azfusionstorage"
+          TF_VAR_vm_admin_password: "adminPassword123"
+          TF_VAR_vm_admin_username: "adminUser"
+          TF_VAR_vpn_shared_key: "vpnSharedKey123"
         run: terraform apply -auto-approve 
