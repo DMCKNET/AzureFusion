@@ -36,9 +36,12 @@ jobs:
           ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
           ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
           ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+          TF_LOG: DEBUG
         run: terraform init
 
       - name: Terraform Validate
+        env:
+          TF_LOG: DEBUG
         run: terraform validate
 
       - name: Terraform Plan
@@ -47,6 +50,7 @@ jobs:
           ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
           ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
           ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+          TF_LOG: DEBUG
         run: terraform plan
 
       - name: Terraform Apply
@@ -56,4 +60,5 @@ jobs:
           ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
           ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
           ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+          TF_LOG: DEBUG
         run: terraform apply -auto-approve
