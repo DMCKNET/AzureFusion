@@ -107,4 +107,4 @@ jobs:
           TF_VAR_sql_server_name: "azfusionsql"
           TF_VAR_vm_size: "Standard_B1s"
           TF_VAR_storage_account_name: "azfusionstorage"
-        run: terraform apply -auto-approve 
+        run: terraform apply -auto-approve
