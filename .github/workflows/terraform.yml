@@ -55,7 +55,7 @@ jobs:
           TF_VAR_vm_name: "fusionvm"
           TF_VAR_nic_name: "fusion-nic"
           TF_VAR_prefix: "fusion"
-          TF_VAR_subnet_names: '{"webapp": "webapp-subnet", "bastion": "AzureBastionSubnet", "gateway": "gateway-subnet", "database": "database-subnet", "admin": "admin-subnet"}'
+          TF_VAR_subnet_names: '{"webapp": "webapp-subnet", "bastion": "AzureBastionSubnet", "gateway": "gateway-subnet", "database": "database-subnet", "admin": "admin-subnet", "appgateway": "appgateway-subnet"}'
           TF_VAR_vnet_name: "fusion-vnet"
           TF_VAR_lb_name: "fusion-lb"
           TF_VAR_lb_frontend_ip_name: "fusion-lb-frontend"
@@ -92,7 +92,7 @@ jobs:
           TF_VAR_vm_name: "fusionvm"
           TF_VAR_nic_name: "fusion-nic"
           TF_VAR_prefix: "fusion"
-          TF_VAR_subnet_names: '{"webapp": "webapp-subnet", "bastion": "AzureBastionSubnet", "gateway": "gateway-subnet", "database": "database-subnet", "admin": "admin-subnet"}'
+          TF_VAR_subnet_names: '{"webapp": "webapp-subnet", "bastion": "AzureBastionSubnet", "gateway": "gateway-subnet", "database": "database-subnet", "admin": "admin-subnet", "appgateway": "appgateway-subnet"}'
           TF_VAR_vnet_name: "fusion-vnet"
           TF_VAR_lb_name: "fusion-lb"
           TF_VAR_lb_frontend_ip_name: "fusion-lb-frontend"
