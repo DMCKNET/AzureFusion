@@ -70,10 +70,10 @@ jobs:
           TF_VAR_sql_server_name: "azfusionsql"
           TF_VAR_vm_size: "Standard_B1s"
           TF_VAR_storage_account_name: "azfusionstorage"
-          TF_VAR_vm_admin_password: "adminPassword123"
-          TF_VAR_vm_admin_username: "adminUser"
-          TF_VAR_vpn_shared_key: "vpnSharedKey123"
-          TF_VAR_ssl_certificate_password: "AzureFusion123$"
+          TF_VAR_vm_admin_password: ${{ secrets.VM_ADMIN_PASSWORD }}
+          TF_VAR_vm_admin_username: ${{ secrets.VM_ADMIN_USERNAME }}
+          TF_VAR_vpn_shared_key: ${{ secrets.VPN_SHARED_KEY }}
+          TF_VAR_ssl_certificate_password: ${{ secrets.SSL_CERTIFICATE_PASSWORD }}
         run: terraform plan
 
       - name: Terraform Apply
@@ -111,10 +111,10 @@ jobs:
           TF_VAR_sql_server_name: "azfusionsql"
           TF_VAR_vm_size: "Standard_B1s"
           TF_VAR_storage_account_name: "azfusionstorage"
-          TF_VAR_vm_admin_password: "adminPassword123"
-          TF_VAR_vm_admin_username: "adminUser"
-          TF_VAR_vpn_shared_key: "vpnSharedKey123"
-          TF_VAR_ssl_certificate_password: "AzureFusion123$"
+          TF_VAR_vm_admin_password: ${{ secrets.VM_ADMIN_PASSWORD }}
+          TF_VAR_vm_admin_username: ${{ secrets.VM_ADMIN_USERNAME }}
+          TF_VAR_vpn_shared_key: ${{ secrets.VPN_SHARED_KEY }}
+          TF_VAR_ssl_certificate_password: ${{ secrets.SSL_CERTIFICATE_PASSWORD }}
         run: terraform apply -auto-approve
 
-# Added a comment to trigger a change 
+# Added a comment to trigger a change
