@@ -130,14 +130,11 @@ variable "service_principal_object_id" {
   description = "The object ID of the service principal."
   type        = string
 }
-variable "fusion_vnet_id" {
-  description = "The ID of the fusion virtual network"
-  type        = string
-}
-variable "onprem_vnet_id" {
-  description = "The ID of the on-prem virtual network"
-}
 variable "storage_account_name" {
   description = "Storage Account name"
+  type        = string
+}
+variable "fusion_vnet_name" {
+  description = "The name of the fusion virtual network"
   type        = string
 }
