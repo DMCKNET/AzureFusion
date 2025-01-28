@@ -55,7 +55,10 @@ jobs:
 
       - name: Show Terraform Plan
         if: always()
-        run: terraform show -json tfplan | jq .
+        run: |
+          terraform show -json tfplan > tfplan.json
+          cat tfplan.json
+          jq . tfplan.json
 
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
@@ -65,4 +68,4 @@ jobs:
           ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
           ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
           TF_LOG: DEBUG
-        run: terraform apply -auto-approve tfplan 
+        run: terraform apply -auto-approve tfplan
